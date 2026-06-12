@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="mb-4">
+
+        Prediction History
+
+    </h1>
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <table class="table table-striped">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Employee</th>
+
+                        <th>Risk Score</th>
+
+                        <th>Status</th>
+
+                        <th>Recommendation</th>
+
+                        <th>Date</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for prediction in predictions %}
+
+                    <tr>
+
+                        <td>
+                            {{ prediction.employee_id }}
+                        </td>
+
+                        <td>
+                            {{ prediction.risk_score }} %
+                        </td>
+
+                        <td>
+
+                            {% if prediction.risk_score >= 70 %}
+
+                                <span class="badge bg-danger">
+                                    High Risk
+                                </span>
+
+                            {% elif prediction.risk_score >= 50 %}
+
+                                <span class="badge bg-warning">
+                                    Medium Risk
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-success">
+                                    Low Risk
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+                            {{ prediction.recommendation }}
+                        </td>
+
+                        <td>
+                            {{ prediction.prediction_date }}
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

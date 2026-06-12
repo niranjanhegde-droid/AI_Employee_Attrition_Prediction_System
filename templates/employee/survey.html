@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold">
+            Employee Wellness & Satisfaction Survey
+        </h1>
+
+        <p class="text-muted">
+            Help us understand your workplace experience.
+        </p>
+
+    </div>
+
+    <form method="POST">
+
+        {{ form.hidden_tag() }}
+
+        <!-- Satisfaction Section -->
+
+        <div class="card shadow border-0 mb-4">
+
+            <div class="card-header bg-primary text-white">
+
+                <h4 class="mb-0">
+                    Job Satisfaction
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    {{ form.job_satisfaction.label(class="form-label fw-bold") }}
+                    {{ form.job_satisfaction(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.environment_satisfaction.label(class="form-label fw-bold") }}
+                    {{ form.environment_satisfaction(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.relationship_satisfaction.label(class="form-label fw-bold") }}
+                    {{ form.relationship_satisfaction(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.salary_satisfaction.label(class="form-label fw-bold") }}
+                    {{ form.salary_satisfaction(class="form-select") }}
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Work Life Section -->
+
+        <div class="card shadow border-0 mb-4">
+
+            <div class="card-header bg-success text-white">
+
+                <h4 class="mb-0">
+                    Work-Life & Stress
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    {{ form.work_life_balance.label(class="form-label fw-bold") }}
+                    {{ form.work_life_balance(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.stress_level.label(class="form-label fw-bold") }}
+                    {{ form.stress_level(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.workload.label(class="form-label fw-bold") }}
+                    {{ form.workload(class="form-select") }}
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Management Section -->
+
+        <div class="card shadow border-0 mb-4">
+
+            <div class="card-header bg-warning">
+
+                <h4 class="mb-0">
+                    Management & Recognition
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    {{ form.manager_support.label(class="form-label fw-bold") }}
+                    {{ form.manager_support(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.recognition.label(class="form-label fw-bold") }}
+                    {{ form.recognition(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.communication.label(class="form-label fw-bold") }}
+                    {{ form.communication(class="form-select") }}
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Growth Section -->
+
+        <div class="card shadow border-0 mb-4">
+
+            <div class="card-header bg-info text-white">
+
+                <h4 class="mb-0">
+                    Career Growth & Development
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    {{ form.career_growth.label(class="form-label fw-bold") }}
+                    {{ form.career_growth(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.training_opportunities.label(class="form-label fw-bold") }}
+                    {{ form.training_opportunities(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.job_security.label(class="form-label fw-bold") }}
+                    {{ form.job_security(class="form-select") }}
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Company Section -->
+
+        <div class="card shadow border-0 mb-4">
+
+            <div class="card-header bg-dark text-white">
+
+                <h4 class="mb-0">
+                    Company Feedback
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    {{ form.company_culture.label(class="form-label fw-bold") }}
+                    {{ form.company_culture(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.recommend_company.label(class="form-label fw-bold") }}
+                    {{ form.recommend_company(class="form-select") }}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card shadow border-0">
+
+            <div class="card-body text-center">
+
+                <h5 class="mb-3">
+                    Thank you for your feedback
+                </h5>
+
+                {{ form.submit(
+                    class="btn btn-success btn-lg px-5"
+                ) }}
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

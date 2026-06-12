@@ -1,0 +1,48 @@
+# Python
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+
+venv/
+env/
+.venv/
+
+# Database
+
+database/*.db
+instance/*.db
+*.sqlite3
+
+# Machine Learning Models
+
+*.pkl
+
+# Generated Reports
+
+report_*.pdf
+*.pdf
+
+# VS Code
+
+.vscode/
+
+# Environment Variables
+
+.env
+
+# OS Files
+
+.DS_Store
+Thumbs.db
+
+# Flask
+
+instance/
+
+# Logs
+
+*.log

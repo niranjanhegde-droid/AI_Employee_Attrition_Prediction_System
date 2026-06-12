@@ -1,0 +1,895 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Animated background particles -->
+<div class="particles" id="particles"></div>
+
+<!-- ═══════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════ -->
+<section class="hero-section">
+  <div class="hero-glow"></div>
+  <div class="container hero-container">
+
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      AI-Powered HR Analytics Platform
+    </div>
+
+    <h1 class="hero-title">
+      Employee Attrition
+      <span class="hero-gradient-text">Prediction System</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      Harness the power of Machine Learning and HR Analytics to predict,
+      prevent, and understand employee churn — before it happens.
+    </p>
+
+    <div class="hero-stats">
+      <div class="stat-pill">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        89% Accuracy
+      </div>
+      <div class="stat-pill">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        Real-time Predictions
+      </div>
+      <div class="stat-pill">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        SHAP Explainability
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span>Explore Portals</span>
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PORTAL CARDS
+════════════════════════════════════════════ -->
+<div class="portals-section">
+  <div class="container">
+
+    <div class="section-label">Select Your Portal</div>
+
+    <div class="row g-4 justify-content-center portal-row">
+
+      <!-- ── Employee Portal ── -->
+      <div class="col-lg-5 col-md-6">
+        <div class="portal-card employee-card">
+
+          <div class="card-glow card-glow-green"></div>
+
+          <div class="portal-icon-wrap employee-icon-wrap">
+            <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+
+          <div class="portal-tag employee-tag">Employee</div>
+
+          <h2 class="portal-title">Employee Portal</h2>
+          <p class="portal-desc">
+            Register your profile, track your satisfaction scores, and stay informed about your career health within the organisation.
+          </p>
+
+          <ul class="portal-features">
+            <li>
+              <span class="feature-dot dot-green"></span>
+              Manage your employee profile
+            </li>
+            <li>
+              <span class="feature-dot dot-green"></span>
+              View personal analytics
+            </li>
+            <li>
+              <span class="feature-dot dot-green"></span>
+              Track career milestones
+            </li>
+          </ul>
+
+          <div class="portal-actions">
+            <a href="/register" class="btn-portal btn-portal-outline-green">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+              Employee Registration
+            </a>
+            <a href="/login" class="btn-portal btn-portal-green">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+              Employee Login
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Admin Portal ── -->
+      <div class="col-lg-5 col-md-6">
+        <div class="portal-card admin-card">
+
+          <div class="card-glow card-glow-red"></div>
+
+          <div class="portal-icon-wrap admin-icon-wrap">
+            <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+
+          <div class="portal-tag admin-tag">Admin</div>
+
+          <h2 class="portal-title">Admin Portal</h2>
+          <p class="portal-desc">
+            Access the full analytics dashboard, run attrition predictions on your workforce, and generate actionable retention strategies.
+          </p>
+
+          <ul class="portal-features">
+            <li>
+              <span class="feature-dot dot-red"></span>
+              Predict attrition risks
+            </li>
+            <li>
+              <span class="feature-dot dot-red"></span>
+              SHAP-powered explanations
+            </li>
+            <li>
+              <span class="feature-dot dot-red"></span>
+              Workforce-wide analytics
+            </li>
+          </ul>
+
+          <div class="portal-actions">
+            <a href="/admin/register" class="btn-portal btn-portal-outline-red">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+              Admin Registration
+            </a>
+            <a href="/admin/login" class="btn-portal btn-portal-red">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+              Admin Login
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+</div><!-- /portals-section -->
+
+<section class="workflow-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                How The System Works
+            </h2>
+
+            <p>
+                Transform employee data into actionable HR insights using AI and Machine Learning.
+            </p>
+
+        </div>
+
+        <div class="workflow-grid">
+
+            <div class="workflow-card">
+                <div class="workflow-number">01</div>
+                <h4>Employee Registration</h4>
+                <p>
+                    Employees create profiles and provide professional details.
+                </p>
+            </div>
+
+            <div class="workflow-card">
+                <div class="workflow-number">02</div>
+                <h4>Employee Survey</h4>
+                <p>
+                    Collect satisfaction, engagement and workplace wellness metrics.
+                </p>
+            </div>
+
+            <div class="workflow-card">
+                <div class="workflow-number">03</div>
+                <h4>AI Prediction</h4>
+                <p>
+                    XGBoost model predicts attrition probability using employee data.
+                </p>
+            </div>
+
+            <div class="workflow-card">
+                <div class="workflow-number">04</div>
+                <h4>HR Analytics</h4>
+                <p>
+                    Generate insights, risk factors and retention strategies.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="feature-cards-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Platform Features
+            </h2>
+
+        </div>
+
+        <div class="feature-card-grid">
+
+            <div class="feature-box">
+
+                <h4>Attrition Prediction</h4>
+
+                <p>
+                    Predict employee resignation risk using AI.
+                </p>
+
+            </div>
+
+            <div class="feature-box">
+
+                <h4>Wellness Score</h4>
+
+                <p>
+                    Measure employee satisfaction and engagement.
+                </p>
+
+            </div>
+
+            <div class="feature-box">
+
+                <h4>Department Analytics</h4>
+
+                <p>
+                    Compare risk across departments.
+                </p>
+
+            </div>
+
+            <div class="feature-box">
+
+                <h4>Risk Explanation</h4>
+
+                <p>
+                    Identify factors driving attrition risk.
+                </p>
+
+            </div>
+
+            <div class="feature-box">
+
+                <h4>PDF Reports</h4>
+
+                <p>
+                    Export professional HR reports instantly.
+                </p>
+
+            </div>
+
+            <div class="feature-box">
+
+                <h4>Admin Dashboard</h4>
+
+                <p>
+                    Real-time workforce monitoring and insights.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="tech-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Technology Stack
+            </h2>
+
+        </div>
+
+        <div class="tech-grid">
+
+            <span>Python</span>
+            <span>Flask</span>
+            <span>Bootstrap 5</span>
+            <span>XGBoost</span>
+            <span>SHAP</span>
+            <span>SQLite</span>
+            <span>Machine Learning</span>
+            <span>HR Analytics</span>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ═══════════════════════════════════════════
+     FEATURE STRIP
+════════════════════════════════════════════ -->
+<div class="features-strip">
+  <div class="container">
+    <div class="features-grid">
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div>
+          <p class="feature-name">XGBoost Model</p>
+          <p class="feature-sub">State-of-the-art ML</p>
+        </div>
+      </div>
+
+      <div class="feature-divider"></div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+        </div>
+        <div>
+          <p class="feature-name">SHAP Analysis</p>
+          <p class="feature-sub">Explainable AI decisions</p>
+        </div>
+      </div>
+
+      <div class="feature-divider"></div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        </div>
+        <div>
+          <p class="feature-name">Role-based Access</p>
+          <p class="feature-sub">Secure & segmented</p>
+        </div>
+      </div>
+
+      <div class="feature-divider"></div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+        </div>
+        <div>
+          <p class="feature-name">Live Dashboard</p>
+          <p class="feature-sub">Visualise everything</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     STYLES
+════════════════════════════════════════════ -->
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .workflow-section,
+.feature-cards-section,
+.tech-section{
+
+    background:#0b1220;
+    padding:90px 0;
+}
+
+.section-heading{
+
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-heading h2{
+
+    color:white;
+    font-weight:800;
+}
+
+.section-heading p{
+
+    color:#94a3b8;
+}
+
+.workflow-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.workflow-card{
+
+    background:#111827;
+    padding:30px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.workflow-number{
+
+    color:#818cf8;
+    font-size:2rem;
+    font-weight:800;
+}
+
+.workflow-card h4{
+
+    color:white;
+    margin-top:10px;
+}
+
+.workflow-card p{
+
+    color:#94a3b8;
+}
+
+.feature-card-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.feature-box{
+
+    background:#111827;
+    border-radius:20px;
+    padding:25px;
+    transition:.3s;
+}
+
+.feature-box:hover{
+
+    transform:translateY(-5px);
+    border:1px solid #6366f1;
+}
+
+.feature-box h4{
+
+    color:white;
+}
+
+.feature-box p{
+
+    color:#94a3b8;
+}
+
+.tech-grid{
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+
+.tech-grid span{
+
+    background:#1e293b;
+    color:#e2e8f0;
+    padding:12px 22px;
+    border-radius:999px;
+    font-weight:600;
+}
+
+  /* ── Particles ── */
+  .particles {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.12);
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0%   { transform: translateY(110vh) scale(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  /* ── Hero Section ── */
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    background: linear-gradient(135deg, #0a0e1a 0%, #0d1117 40%, #0a1628 100%);
+    overflow: hidden;
+    padding: 80px 0 60px;
+  }
+  .hero-glow {
+    position: absolute;
+    top: -200px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(ellipse, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-container {
+    position: relative; z-index: 1;
+    text-align: center;
+    max-width: 780px; margin: 0 auto;
+    padding: 0 20px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.35);
+    color: #a5b4fc;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeDown 0.6s ease both;
+  }
+  .badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #818cf8;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(1.4); }
+  }
+  .hero-title {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 800;
+    color: #f1f5f9;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    animation: fadeDown 0.6s 0.1s ease both;
+  }
+  .hero-gradient-text {
+    background: linear-gradient(135deg, #818cf8, #a78bfa, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    line-height: 1.75;
+    max-width: 560px; margin: 0 auto 36px;
+    animation: fadeDown 0.6s 0.2s ease both;
+  }
+  .hero-stats {
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 12px;
+    margin-bottom: 52px;
+    animation: fadeDown 0.6s 0.3s ease both;
+  }
+  .stat-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #cbd5e1;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+  .stat-pill:hover {
+    background: rgba(99,102,241,0.15);
+    border-color: rgba(99,102,241,0.4);
+    color: #a5b4fc;
+    transform: translateY(-2px);
+  }
+  .hero-scroll-hint {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 6px;
+    color: #475569;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    animation: fadeDown 0.6s 0.4s ease both, bobbing 2s 1s ease-in-out infinite;
+  }
+  @keyframes bobbing {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(6px); }
+  }
+
+  /* ── Portals Section ── */
+  .portals-section {
+    background: #080c14;
+    padding: 80px 0 100px;
+    position: relative; z-index: 1;
+  }
+  .section-label {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #475569;
+    margin-bottom: 40px;
+  }
+  .portal-row { align-items: stretch; }
+
+  /* Portal Card Base */
+  .portal-card {
+    position: relative;
+    background: #0f1420;
+    border-radius: 20px;
+    padding: 40px 36px;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeUp 0.7s ease both;
+  }
+  .portal-card:hover {
+    transform: translateY(-6px);
+  }
+  .employee-card {
+    border: 1px solid rgba(34,197,94,0.2);
+    animation-delay: 0.1s;
+  }
+  .employee-card:hover {
+    box-shadow: 0 24px 60px rgba(34,197,94,0.1);
+    border-color: rgba(34,197,94,0.4);
+  }
+  .admin-card {
+    border: 1px solid rgba(239,68,68,0.2);
+    animation-delay: 0.2s;
+  }
+  .admin-card:hover {
+    box-shadow: 0 24px 60px rgba(239,68,68,0.1);
+    border-color: rgba(239,68,68,0.4);
+  }
+
+  /* Glow effect */
+  .card-glow {
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  .card-glow-green { background: rgba(34,197,94,0.3); }
+  .card-glow-red   { background: rgba(239,68,68,0.3); }
+
+  /* Icon */
+  .portal-icon-wrap {
+    width: 64px; height: 64px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .employee-icon-wrap { background: rgba(34,197,94,0.12); color: #4ade80; }
+  .admin-icon-wrap    { background: rgba(239,68,68,0.12); color: #f87171; }
+
+  /* Tag */
+  .portal-tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .employee-tag { background: rgba(34,197,94,0.12); color: #4ade80; }
+  .admin-tag    { background: rgba(239,68,68,0.12); color: #f87171; }
+
+  /* Text */
+  .portal-title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #f1f5f9;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .portal-desc {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  /* Features list */
+  .portal-features {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+  .portal-features li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .portal-features li:last-child { border-bottom: none; }
+  .feature-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%; flex-shrink: 0;
+  }
+  .dot-green { background: #4ade80; }
+  .dot-red   { background: #f87171; }
+
+  /* Action buttons */
+  .portal-actions {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .btn-portal {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 24px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+  }
+
+  /* Green variants */
+  .btn-portal-green {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: #fff;
+    border-color: #16a34a;
+  }
+  .btn-portal-green:hover {
+    background: linear-gradient(135deg, #15803d, #166534);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(22,163,74,0.35);
+  }
+  .btn-portal-outline-green {
+    background: transparent;
+    color: #4ade80;
+    border-color: rgba(34,197,94,0.4);
+  }
+  .btn-portal-outline-green:hover {
+    background: rgba(34,197,94,0.1);
+    border-color: rgba(34,197,94,0.7);
+    color: #4ade80;
+    transform: translateY(-2px);
+  }
+
+  /* Red variants */
+  .btn-portal-red {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: #fff;
+    border-color: #dc2626;
+  }
+  .btn-portal-red:hover {
+    background: linear-gradient(135deg, #b91c1c, #991b1b);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(220,38,38,0.35);
+  }
+  .btn-portal-outline-red {
+    background: transparent;
+    color: #f87171;
+    border-color: rgba(239,68,68,0.4);
+  }
+  .btn-portal-outline-red:hover {
+    background: rgba(239,68,68,0.1);
+    border-color: rgba(239,68,68,0.7);
+    color: #f87171;
+    transform: translateY(-2px);
+  }
+
+  /* ── Feature Strip ── */
+  .features-strip {
+    background: #040710;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 32px 0;
+    position: relative; z-index: 1;
+  }
+  .features-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .feature-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 32px;
+    transition: background 0.2s;
+    border-radius: 12px;
+  }
+  .feature-item:hover { background: rgba(255,255,255,0.03); }
+  .feature-icon {
+    width: 40px; height: 40px;
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: #818cf8;
+    flex-shrink: 0;
+  }
+  .feature-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin: 0;
+  }
+  .feature-sub {
+    font-size: 0.75rem;
+    color: #475569;
+    margin: 2px 0 0;
+  }
+  .feature-divider {
+    width: 1px; height: 40px;
+    background: rgba(255,255,255,0.07);
+    flex-shrink: 0;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .hero-title { font-size: 2.2rem; }
+    .portal-card { padding: 28px 24px; }
+    .features-grid { flex-direction: column; }
+    .feature-divider { width: 60px; height: 1px; }
+    .feature-item { padding: 10px 20px; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════
+     PARTICLES SCRIPT
+════════════════════════════════════════════ -->
+<script>
+  (function () {
+    var container = document.getElementById('particles');
+    if (!container) return;
+    for (var i = 0; i < 22; i++) {
+      var p = document.createElement('div');
+      p.className = 'particle';
+      var size = Math.random() * 5 + 2;
+      p.style.cssText = [
+        'width:' + size + 'px',
+        'height:' + size + 'px',
+        'left:' + Math.random() * 100 + '%',
+        'animation-duration:' + (Math.random() * 18 + 12) + 's',
+        'animation-delay:' + (Math.random() * 12) + 's',
+      ].join(';');
+      container.appendChild(p);
+    }
+  })();
+</script>
+
+{% endblock %}

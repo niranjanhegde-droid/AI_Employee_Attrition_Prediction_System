@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1>
+        Employee Dashboard
+    </h1>
+
+    <div class="card shadow mt-4">
+
+        <div class="card-body">
+
+            <h4>
+
+                Welcome {{ current_user.name }}
+
+            </h4>
+
+            {% if employee %}
+
+            <p>
+
+                Employee ID:
+                {{ employee.employee_id }}
+
+            </p>
+
+            <p>
+
+                Department:
+                {{ employee.department }}
+
+            </p>
+
+            <p>
+
+                Role:
+                {{ employee.job_role }}
+
+            </p>
+
+            {% endif %}
+
+            <hr>
+
+            <a href="/employee/profile"
+               class="btn btn-primary">
+
+               Update Profile
+
+            </a>
+
+            <a href="/employee/survey"
+               class="btn btn-success">
+
+               Fill Survey
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="text-center mt-4">
+
+    <a href="/logout"
+       class="btn btn-warning">
+
+       Logout
+
+    </a>
+
+    <a href="/delete_account_confirm"
+       class="btn btn-danger ms-2">
+
+       Delete Account
+
+    </a>
+
+</div>
+{% endblock %}
