@@ -197,7 +197,7 @@ EMPLOYEE PROJECT
 ### 1️⃣ Clone Repository
 
 ```bash
-[git clone ](https://github.com/niranjanhegde-droid/AI_Employee_Attrition_Prediction_System.git)```
+git clone https://github.com/niranjanhegde-droid/AI_Employee_Attrition_Prediction_System.git
 
 ### 2️⃣ Move Into Project
 
