@@ -16,13 +16,6 @@ class Config:
         "ADMIN2026"
     )
 
-    SQLALCHEMY_DATABASE_URI = (
-        "sqlite:///" +
-        os.path.join(
-            BASE_DIR,
-            "database",
-            "employee.db"
-        )
-    )
+    SQLALCHEMY_DATABASE_URI = "sqlite:///employee.db"
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
