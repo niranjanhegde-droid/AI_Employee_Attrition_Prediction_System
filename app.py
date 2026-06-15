@@ -71,7 +71,10 @@ login_manager.login_view = "login"
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return db.session.get(
+    User,
+    int(user_id)
+)
 
 
 with app.app_context():
@@ -82,15 +85,6 @@ with app.app_context():
 def home():
     return render_template("home.html")
 
-
-@app.route("/about")
-def about():
-    return render_template("about.html")
-
-
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -296,26 +290,6 @@ def employee_profile():
         form=form
     )
 
-@app.route("/employees")
-def employees():
-
-    employees = Employee.query.all()
-
-    output = ""
-
-    for emp in employees:
-
-        output += f"""
-        {emp.employee_id}
-        -
-        {emp.department}
-        -
-        {emp.job_role}
-        <br>
-        """
-
-    return output 
-   
 @app.route(
     "/employee/survey",
     methods=["GET", "POST"]
@@ -638,54 +612,43 @@ def admin_predict(employee_id):
         reverse=True
     )
     if not employee:
-
         return "Employee Record Not Found"
-
-    if not survey:
-
-        return "Survey Record Not Found"
 
     employee_data = {
 
-        "Age":
-            employee.age,
+    "Age": employee.age,
 
-        "BusinessTravel":
-            employee.business_travel,
+    "BusinessTravel": employee.business_travel,
 
-        "Department":
-            employee.department,
+    "Department": employee.department,
 
-        "DistanceFromHome":
-            employee.distance_from_home,
+    "DistanceFromHome": employee.distance_from_home,
 
-        "Education":
-            employee.education,
+    "Education": employee.education,
 
-        "EnvironmentSatisfaction":
-            survey.environment_satisfaction,
+    "EnvironmentSatisfaction":
+        survey.environment_satisfaction,
 
-        "JobRole":
-            employee.job_role,
+    "JobRole": employee.job_role,
 
-        "JobSatisfaction":
-            survey.job_satisfaction,
+    "JobSatisfaction":
+        survey.job_satisfaction,
 
-        "MonthlyIncome":
-            employee.monthly_income,
+    "MonthlyIncome":
+        employee.monthly_income,
 
-        "OverTime":
-            employee.overtime,
+    "OverTime":
+        employee.overtime,
 
-        "RelationshipSatisfaction":
-            survey.relationship_satisfaction,
+    "RelationshipSatisfaction":
+        survey.relationship_satisfaction,
 
-        "WorkLifeBalance":
-            survey.work_life_balance,
+    "WorkLifeBalance":
+        survey.work_life_balance,
 
-        "YearsAtCompany":
-            employee.years_at_company
-    }
+    "YearsAtCompany":
+        employee.years_at_company
+}
 
     risk_score, adjusted_risk, status, wellness_score = (
     predict_employee(
@@ -892,85 +855,15 @@ def admin_predict(employee_id):
         status=status,
 
         recommendation=recommendation,
+
         risk_factors=risk_factors,
+
         persona=persona,
 
         persona_reason=persona_reason,
+
         driver_ranking=drivers
-
     )
-
-@app.route("/check_survey")
-def check_survey():
-
-    surveys = Survey.query.all()
-
-    output = ""
-
-    for s in surveys:
-
-        output += f"""
-        Employee ID:
-        {s.employee_id}
-        <br>
-        Job Satisfaction:
-        {s.job_satisfaction}
-        <hr>
-        """
-
-    return output
-
-@app.route("/check_employee")
-def check_employee():
-
-    employees = Employee.query.all()
-
-    output = ""
-
-    for e in employees:
-
-        output += f"""
-        Employee ID:
-        {e.employee_id}
-        <br>
-        User ID:
-        {e.user_id}
-        <hr>
-        """
-
-    return output
-
-@app.route("/whoami")
-@login_required
-def whoami():
-
-    return f"""
-    Name: {current_user.name}
-    <br>
-    Email: {current_user.email}
-    <br>
-    Role: {current_user.role}
-    """
-@app.route("/all_users")
-def all_users():
-
-    users = User.query.all()
-
-    output = ""
-
-    for u in users:
-
-        output += f"""
-        Name: {u.name}
-        <br>
-        Email: {u.email}
-        <br>
-        Role: {u.role}
-        <hr>
-        """
-
-    return output
-
 @app.route(
     "/admin/login",
     methods=["GET", "POST"]
@@ -1073,7 +966,12 @@ def generate_report(employee_id):
 
         return "Prediction Not Found"
 
-    pdf_file = f"report_{employee_id}.pdf"
+    import tempfile
+
+    pdf_file = tempfile.NamedTemporaryFile(
+        delete=False,
+        suffix=".pdf"
+    ).name
 
     doc = SimpleDocTemplate(
         pdf_file
@@ -1179,10 +1077,26 @@ def admin_register():
 
     if form.validate_on_submit():
 
-        if form.secret_key.data != "ADMIN2026":
+        if form.secret_key.data != app.config["ADMIN_SECRET"]:
 
             flash(
                 "Invalid Secret Key",
+                "danger"
+            )
+
+            return redirect(
+                url_for("admin_register")
+            )
+
+        # Check if email already exists
+        existing_admin = User.query.filter_by(
+            email=form.email.data
+        ).first()
+
+        if existing_admin:
+
+            flash(
+                "Email already registered.",
                 "danger"
             )
 
@@ -1264,7 +1178,8 @@ def delete_employee(employee_id):
     for p in predictions:
         db.session.delete(p)
 
-    user = User.query.get(
+    user = db.session.get(
+        User,
         employee.user_id
     )
 
@@ -1304,8 +1219,9 @@ def delete_account():
 
         db.session.delete(employee)
 
-    user = User.query.get(
-        current_user.id
+    user = db.session.get(
+            User,
+            current_user.id
     )
 
     logout_user()
@@ -1346,8 +1262,9 @@ def admin_delete_account():
             url_for("admin_dashboard")
         )
 
-    user = User.query.get(
-        current_user.id
+    user = db.session.get(
+            User,
+            current_user.id
     )
 
     logout_user()
@@ -1392,4 +1309,4 @@ def admin_delete_account_confirm():
     )
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

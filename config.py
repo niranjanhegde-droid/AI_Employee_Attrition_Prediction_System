@@ -1,16 +1,28 @@
 import os
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+BASE_DIR = os.path.abspath(
+    os.path.dirname(__file__)
+)
 
 class Config:
 
-    SECRET_KEY = "employee_attrition_secret_key"
+    SECRET_KEY = os.environ.get(
+        "SECRET_KEY",
+        "employee_attrition_secret_key"
+    )
 
-    SQLALCHEMY_DATABASE_URI = \
-        'sqlite:///' + os.path.join(
+    ADMIN_SECRET = os.environ.get(
+        "ADMIN_SECRET",
+        "ADMIN2026"
+    )
+
+    SQLALCHEMY_DATABASE_URI = (
+        "sqlite:///" +
+        os.path.join(
             BASE_DIR,
-            'database',
-            'employee.db'
+            "database",
+            "employee.db"
         )
+    )
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
