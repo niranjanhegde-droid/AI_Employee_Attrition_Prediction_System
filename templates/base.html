@@ -286,21 +286,23 @@ body{
 
         {% if current_user.role == "admin" %}
 
-        <a href="/admin/delete_account_confirm"
-        class="btn btn-danger">
+<a href="/admin/delete_account_confirm"
+   class="btn btn-danger">
 
-        Delete Account
+    Delete Account
 
-        </a>
+</a>
 
-        {% else %}
+{% else %}
 
-        <a href="/delete_account_confirm"
-        class="btn btn-danger">
+<a href="/delete_account"
+   class="btn btn-danger">
 
-        Delete Account
+    Delete Account
 
-        </a>
+</a>
+
+{% endif %}
 
 
 
