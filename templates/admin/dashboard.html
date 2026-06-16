@@ -4,16 +4,23 @@
 
 <style>
 
-.dashboard-title{
-    font-weight:700;
-    color:#0f172a;
+.dashboard-header{
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #4f46e5
+    );
+    color:white;
+    border-radius:24px;
+    padding:35px;
+    margin-bottom:30px;
 }
 
 .kpi-card{
     border:none;
     border-radius:20px;
     overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
     transition:.3s;
 }
 
@@ -22,73 +29,80 @@
 }
 
 .kpi-number{
-    font-size:2.2rem;
+    font-size:2rem;
     font-weight:700;
 }
 
-.section-title{
-    font-weight:700;
-    color:#0f172a;
+.kpi-icon{
+    font-size:2rem;
+    opacity:.8;
 }
 
 .chart-card{
     border:none;
     border-radius:20px;
     overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
 .chart-container{
-    position:relative;
     height:280px;
-}
-
-.department-card{
-    border:none;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-}
-
-.department-table th{
-    vertical-align:middle;
-}
-
-.department-table td{
-    vertical-align:middle;
 }
 
 .action-card{
     border:none;
     border-radius:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.department-card{
+    border:none;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.section-title{
+    font-weight:700;
+    margin-bottom:20px;
 }
 
 </style>
 
-<div class="container py-5">
+<div class="container py-4">
 
-    <h1 class="dashboard-title mb-4">
+    <!-- HEADER -->
 
-        Admin Dashboard
+    <div class="dashboard-header">
 
-    </h1>
+        <h1 class="fw-bold">
 
-    <!-- KPI CARDS -->
+            Admin Dashboard
+
+        </h1>
+
+        <p class="mb-0">
+
+            AI Powered Employee Attrition Analytics & Workforce Intelligence
+
+        </p>
+
+    </div>
+
+    <!-- KPI SECTION -->
 
     <div class="row g-4">
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-2 col-md-4">
 
             <div class="card kpi-card">
 
                 <div class="card-body text-center">
 
-                    <h6 class="text-muted">
+                    <div class="kpi-icon text-primary">
 
-                        Total Employees
+                        👥
 
-                    </h6>
+                    </div>
 
                     <div class="kpi-number">
 
@@ -96,23 +110,29 @@
 
                     </div>
 
+                    <small class="text-muted">
+
+                        Employees
+
+                    </small>
+
                 </div>
 
             </div>
 
         </div>
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-2 col-md-4">
 
             <div class="card kpi-card">
 
                 <div class="card-body text-center">
 
-                    <h6 class="text-muted">
+                    <div class="kpi-icon text-success">
 
-                        Predictions
+                        📈
 
-                    </h6>
+                    </div>
 
                     <div class="kpi-number">
 
@@ -120,23 +140,29 @@
 
                     </div>
 
+                    <small class="text-muted">
+
+                        Predictions
+
+                    </small>
+
                 </div>
 
             </div>
 
         </div>
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-2 col-md-4">
 
             <div class="card kpi-card">
 
                 <div class="card-body text-center">
 
-                    <h6 class="text-muted">
+                    <div class="kpi-icon text-danger">
 
-                        High Risk
+                        ⚠
 
-                    </h6>
+                    </div>
 
                     <div class="kpi-number text-danger">
 
@@ -144,23 +170,29 @@
 
                     </div>
 
+                    <small class="text-muted">
+
+                        High Risk
+
+                    </small>
+
                 </div>
 
             </div>
 
         </div>
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-2 col-md-4">
 
             <div class="card kpi-card">
 
                 <div class="card-body text-center">
 
-                    <h6 class="text-muted">
+                    <div class="kpi-icon text-success">
 
-                        Low Risk
+                        ✔
 
-                    </h6>
+                    </div>
 
                     <div class="kpi-number text-success">
 
@@ -168,6 +200,72 @@
 
                     </div>
 
+                    <small class="text-muted">
+
+                        Low Risk
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-2 col-md-4">
+
+            <div class="card kpi-card">
+
+                <div class="card-body text-center">
+
+                    <div class="kpi-icon text-info">
+
+                        🛡
+
+                    </div>
+
+                    <div class="kpi-number text-info">
+
+                        {{ total_admins }}
+
+                    </div>
+
+                    <small class="text-muted">
+
+                        Admins
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-2 col-md-4">
+
+            <div class="card kpi-card">
+
+                <div class="card-body text-center">
+
+                    <div class="kpi-icon text-dark">
+
+                        🗑
+
+                    </div>
+
+                    <div class="kpi-number text-dark">
+
+                        {{ deleted_employees }}
+
+                    </div>
+
+                    <small class="text-muted">
+
+                        Deleted
+
+                    </small>
+
                 </div>
 
             </div>
@@ -176,37 +274,50 @@
 
     </div>
 
-    <!-- ACTION BUTTONS -->
+    <!-- ACTION CENTER -->
 
     <div class="card action-card mt-4">
 
         <div class="card-body text-center">
 
-            <a href="/admin/employees"
-               class="btn btn-primary btn-lg">
+            <h5 class="fw-bold mb-3">
 
-               View Employees
+                Quick Actions
+
+            </h5>
+
+            <a href="/admin/employees"
+               class="btn btn-primary m-1">
+
+                Employees
 
             </a>
 
             <a href="/admin/history"
-               class="btn btn-success btn-lg ms-2">
+               class="btn btn-success m-1">
 
-               Prediction History
+                History
+
+            </a>
+
+            <a href="/admin/admins"
+               class="btn btn-info m-1">
+
+                Admins
+
+            </a>
+
+            <a href="/admin/deleted-employees"
+               class="btn btn-dark m-1">
+
+                Deleted Employees
 
             </a>
 
             <a href="/logout"
-               class="btn btn-warning btn-lg ms-2">
+               class="btn btn-warning m-1">
 
-               Logout
-
-            </a>
-
-            <a href="/admin/delete_account_confirm"
-               class="btn btn-danger btn-lg ms-2">
-
-               Delete Account
+                Logout
 
             </a>
 
@@ -214,15 +325,13 @@
 
     </div>
 
-    <hr class="my-5">
-
     <!-- ANALYTICS -->
 
-    <h2 class="section-title mb-4">
+    <h3 class="section-title mt-5">
 
         Attrition Analytics
 
-    </h2>
+    </h3>
 
     <div class="row g-4">
 
@@ -276,21 +385,19 @@
 
     </div>
 
-    <hr class="my-5">
+    <!-- DEPARTMENT TABLE -->
 
-    <!-- DEPARTMENT ANALYTICS -->
-
-    <h2 class="section-title mb-4">
+    <h3 class="section-title mt-5">
 
         Department Analytics
 
-    </h2>
+    </h3>
 
     <div class="card department-card">
 
         <div class="card-body">
 
-            <table class="table table-hover department-table">
+            <table class="table table-hover">
 
                 <thead class="table-dark">
 
@@ -324,27 +431,27 @@
 
                             {% if dept.avg_risk >= 70 %}
 
-                                <span class="badge bg-danger">
+                            <span class="badge bg-danger">
 
-                                    High Risk
+                                High Risk
 
-                                </span>
+                            </span>
 
                             {% elif dept.avg_risk >= 50 %}
 
-                                <span class="badge bg-warning text-dark">
+                            <span class="badge bg-warning text-dark">
 
-                                    Medium Risk
+                                Medium Risk
 
-                                </span>
+                            </span>
 
                             {% else %}
 
-                                <span class="badge bg-success">
+                            <span class="badge bg-success">
 
-                                    Stable
+                                Stable
 
-                                </span>
+                            </span>
 
                             {% endif %}
 
@@ -362,26 +469,6 @@
 
     </div>
 
-    <div class="card chart-card mt-4">
-
-        <div class="card-header bg-info text-white">
-
-            Department Risk Comparison
-
-        </div>
-
-        <div class="card-body">
-
-            <div class="chart-container">
-
-                <canvas id="departmentRiskChart"></canvas>
-
-            </div>
-
-        </div>
-
-    </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -391,112 +478,37 @@
 document.addEventListener("DOMContentLoaded", function(){
 
     new Chart(
-
         document.getElementById("riskChart"),
-
         {
-
             type:"pie",
-
             data:{
-
-                labels:[
-                    "High Risk",
-                    "Low Risk"
-                ],
-
+                labels:["High Risk","Low Risk"],
                 datasets:[{
-
                     data:[
                         {{ high_risk|default(0) }},
                         {{ low_risk|default(0) }}
                     ]
-
                 }]
             }
         }
     );
 
     new Chart(
-
         document.getElementById("employeeChart"),
-
         {
-
             type:"bar",
-
             data:{
-
                 labels:[
                     "Employees",
                     "Predictions"
                 ],
-
                 datasets:[{
-
                     label:"Count",
-
                     data:[
-                        {{ total_employees|default(0) }},
-                        {{ total_predictions|default(0) }}
+                        {{ total_employees }},
+                        {{ total_predictions }}
                     ]
-
                 }]
-            },
-
-            options:{
-
-                responsive:true,
-                maintainAspectRatio:false
-
-            }
-        }
-    );
-
-    new Chart(
-
-        document.getElementById(
-            "departmentRiskChart"
-        ),
-
-        {
-
-            type:"bar",
-
-            data:{
-
-                labels:[
-
-                    {% for dept in department_stats %}
-
-                        "{{ dept.department }}",
-
-                    {% endfor %}
-
-                ],
-
-                datasets:[{
-
-                    label:"Average Risk %",
-
-                    data:[
-
-                        {% for dept in department_stats %}
-
-                            {{ dept.avg_risk }},
-
-                        {% endfor %}
-
-                    ]
-
-                }]
-            },
-
-            options:{
-
-                responsive:true,
-                maintainAspectRatio:false
-
             }
         }
     );

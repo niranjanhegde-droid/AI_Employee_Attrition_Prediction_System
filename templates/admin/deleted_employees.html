@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card shadow border-0">
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h2 class="fw-bold text-danger">
+
+                    Deleted Employees
+
+                </h2>
+
+                <span class="badge bg-danger">
+
+                    {{ deleted_users|length }} Records
+
+                </span>
+
+            </div>
+
+            <table class="table table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Deleted By</th>
+
+                        <th>Reason</th>
+
+                        <th>Date</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for emp in deleted_users %}
+
+                    <tr>
+
+                        <td>{{ emp.employee_id }}</td>
+
+                        <td>{{ emp.name }}</td>
+
+                        <td>{{ emp.email }}</td>
+
+                        <td>
+
+                            {% if emp.deleted_by == "Admin" %}
+
+                            <span class="badge bg-danger">
+
+                                Admin
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-warning text-dark">
+
+                                Employee
+
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>{{ emp.exit_reason }}</td>
+
+                        <td>
+
+                            {{ emp.deleted_at.strftime('%d-%m-%Y') }}
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

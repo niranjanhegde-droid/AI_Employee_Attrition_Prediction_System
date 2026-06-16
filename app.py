@@ -3,6 +3,7 @@ from flask import render_template
 from flask import redirect
 from flask import url_for
 from flask import flash
+from flask import request
 
 from flask_login import (
     LoginManager,
@@ -26,7 +27,8 @@ from models import (
     User,
     Employee,
     Survey,
-    Prediction
+    Prediction,
+    DeletedEmployee
 )
 
 from models import Employee
@@ -55,6 +57,8 @@ from reportlab.lib.styles import (
 from reportlab.lib import colors
 
 from flask import send_file
+
+from models import DeletedEmployee
 
 app = Flask(__name__)
 
@@ -414,6 +418,12 @@ def admin_dashboard():
         Prediction.risk_score < 70
     ).count()
 
+    total_admins = User.query.filter_by(
+        role="admin"
+    ).count()
+
+    deleted_employees = DeletedEmployee.query.count()
+
     departments = [
 
         "IT",
@@ -485,18 +495,22 @@ def admin_dashboard():
 
     return render_template(
 
-        "admin/dashboard.html",
+    "admin/dashboard.html",
 
-        total_employees=total_employees,
+    total_employees=total_employees,
 
-        total_predictions=total_predictions,
+    total_predictions=total_predictions,
 
-        high_risk=high_risk,
+    high_risk=high_risk,
 
-        low_risk=low_risk,
+    low_risk=low_risk,
 
-        department_stats=department_stats
-    )
+    total_admins=total_admins,
+
+    deleted_employees=deleted_employees,
+
+    department_stats=department_stats
+)
 
 @app.route("/admin/employees")
 @login_required
@@ -1171,16 +1185,31 @@ def delete_employee(employee_id):
     if survey:
         db.session.delete(survey)
 
-    predictions = Prediction.query.filter_by(
-        employee_id=employee_id
-    ).all()
-
-    for p in predictions:
-        db.session.delete(p)
-
     user = db.session.get(
-        User,
-        employee.user_id
+    User,
+    employee.user_id
+    )
+
+    deleted_record = DeletedEmployee(
+
+        employee_id=employee.employee_id,
+
+        name=user.name if user else "Unknown",
+
+        email=user.email if user else "",
+
+        department=employee.department,
+
+        job_role=employee.job_role,
+
+        deleted_by="Admin",
+
+        exit_reason="Admin Removal"
+
+    )
+
+    db.session.add(
+        deleted_record
     )
 
     db.session.delete(employee)
@@ -1189,7 +1218,6 @@ def delete_employee(employee_id):
         db.session.delete(user)
 
     db.session.commit()
-
     flash(
         "Employee Deleted Successfully",
         "success"
@@ -1198,8 +1226,7 @@ def delete_employee(employee_id):
     return redirect(
         url_for("admin_employees")
     )
-
-@app.route("/delete_account")
+@app.route("/delete_account", methods=["GET", "POST"])
 @login_required
 def delete_account():
 
@@ -1207,37 +1234,69 @@ def delete_account():
         user_id=current_user.id
     ).first()
 
-    if employee:
+    if request.method == "POST":
 
-        Survey.query.filter_by(
-            employee_id=employee.employee_id
-        ).delete()
+        reason = request.form.get(
+            "reason",
+            "Not Specified"
+        )
 
-        Prediction.query.filter_by(
-            employee_id=employee.employee_id
-        ).delete()
+        if employee:
 
-        db.session.delete(employee)
+            deleted_record = DeletedEmployee(
 
-    user = db.session.get(
+                employee_id=employee.employee_id,
+
+                name=current_user.name,
+                email=current_user.email,
+
+                department=employee.department,
+
+                job_role=employee.job_role,
+
+                deleted_by="Employee",
+
+                exit_reason=reason
+
+            )
+
+            db.session.add(
+                deleted_record
+            )
+
+            Survey.query.filter_by(
+                employee_id=employee.employee_id
+            ).delete()
+
+            db.session.delete(
+                employee
+            )
+
+        user = db.session.get(
             User,
             current_user.id
-    )
+        )
 
-    logout_user()
+        logout_user()
 
-    db.session.delete(user)
+        db.session.delete(
+            user
+        )
 
-    db.session.commit()
+        db.session.commit()
 
-    flash(
-        "Your account has been deleted.",
-        "success"
-    )
+        flash(
+            "Your account has been deleted successfully.",
+            "success"
+        )
 
-    return redirect(
-        url_for("home")
-    )
+        return redirect(
+            url_for("home")
+        )
+
+    return render_template(
+        "confirm_delete.html"
+    )  
 
 @app.route("/admin/delete_account")
 @login_required
@@ -1250,6 +1309,27 @@ def admin_delete_account():
     total_admins = User.query.filter_by(
         role="admin"
     ).count()
+
+    deleted_count = DeletedEmployee.query.count()
+
+    return render_template(
+
+        "admin/dashboard.html",
+
+        total_employees=total_employees,
+
+        total_predictions=total_predictions,
+
+        high_risk=high_risk,
+
+        low_risk=low_risk,
+
+        department_stats=department_stats,
+
+        total_admins=total_admins,
+
+        deleted_employees=deleted_count
+    )
 
     if total_admins <= 1:
 
@@ -1306,6 +1386,41 @@ def admin_delete_account_confirm():
         delete_url=url_for(
             "admin_delete_account"
         )
+    )
+
+@app.route("/admin/admins")
+@login_required
+def admin_list():
+
+    if current_user.role != "admin":
+        return "Access Denied"
+
+    admins = User.query.filter_by(
+        role="admin"
+    ).all()
+
+    return render_template(
+        "admin/admins.html",
+        admins=admins
+    )
+
+@app.route("/admin/deleted-employees")
+@login_required
+def deleted_employees():
+
+    if current_user.role != "admin":
+
+        return "Access Denied"
+
+    deleted_users = DeletedEmployee.query.order_by(
+        DeletedEmployee.deleted_at.desc()
+    ).all()
+
+    return render_template(
+
+        "admin/deleted_employees.html",
+
+        deleted_users=deleted_users
     )
 
 if __name__ == "__main__":

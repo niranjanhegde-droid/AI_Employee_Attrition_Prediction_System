@@ -239,3 +239,45 @@ class Prediction(db.Model):
         db.DateTime,
         default=datetime.utcnow
     )
+
+class DeletedEmployee(db.Model):
+
+    __tablename__ = "deleted_employees"
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+
+    employee_id = db.Column(
+        db.String(20)
+    )
+
+    name = db.Column(
+        db.String(100)
+    )
+
+    email = db.Column(
+        db.String(120)
+    )
+
+    department = db.Column(
+        db.String(100)
+    )
+
+    job_role = db.Column(
+        db.String(100)
+    )
+
+    deleted_by = db.Column(
+        db.String(50)
+    )
+
+    exit_reason = db.Column(
+        db.String(200)
+    )
+
+    deleted_at = db.Column(
+        db.DateTime,
+        default=datetime.utcnow
+    )

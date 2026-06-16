@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card shadow border-0">
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h2 class="fw-bold">
+
+                    Admin Management
+
+                </h2>
+
+                <span class="badge bg-primary">
+
+                    {{ admins|length }} Admins
+
+                </span>
+
+            </div>
+
+            <table class="table table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Role</th>
+
+                        <th>Created</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for admin in admins %}
+
+                    <tr>
+
+                        <td>{{ admin.name }}</td>
+
+                        <td>{{ admin.email }}</td>
+
+                        <td>
+
+                            <span class="badge bg-primary">
+
+                                Admin
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            {{ admin.created_at.strftime('%d-%m-%Y') }}
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
