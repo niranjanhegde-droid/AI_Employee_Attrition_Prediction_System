@@ -12,11 +12,21 @@ from sklearn.metrics import (
     confusion_matrix
 )
 
-# Load Dataset
-df = pd.read_csv(
-    "../dataset/WA_Fn-UseC_-HR-Employee-Attrition.csv"
+import os
+
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__)
+    )
 )
 
+csv_path = os.path.join(
+    BASE_DIR,
+    "dataset",
+    "WA_Fn-UseC_-HR-Employee-Attrition.csv"
+)
+
+df = pd.read_csv(csv_path)
 # Features used in OUR SYSTEM
 features = [
 
