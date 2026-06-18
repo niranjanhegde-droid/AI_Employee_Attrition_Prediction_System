@@ -5,7 +5,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
 from xgboost import XGBClassifier
+import matplotlib.pyplot as plt
+import seaborn as sns
 
+from xgboost import plot_importance
 from sklearn.metrics import (
     accuracy_score,
     classification_report,
@@ -62,6 +65,28 @@ target = "Attrition"
 # Keep only required columns
 df = df[features + [target]]
 
+plt.figure(figsize=(12,8))
+
+corr_matrix = df.corr(numeric_only=True)
+
+sns.heatmap(
+    corr_matrix,
+    cmap="coolwarm",
+    annot=True,
+    fmt=".2f"
+)
+
+plt.title(
+    "Correlation Heatmap"
+)
+
+plt.tight_layout()
+
+plt.savefig(
+    "correlation_heatmap.png"
+)
+
+plt.close()
 # Encode categorical columns
 label_encoders = {}
 
@@ -88,6 +113,32 @@ X = df[features]
 
 # Target
 y = df[target]
+
+# Attrition Distribution Graph
+
+plt.figure(figsize=(6,5))
+
+sns.countplot(x=y)
+
+plt.title(
+    "Employee Attrition Distribution"
+)
+
+plt.xlabel(
+    "Attrition"
+)
+
+plt.ylabel(
+    "Count"
+)
+
+plt.tight_layout()
+
+plt.savefig(
+    "attrition_distribution.png"
+)
+
+plt.close()
 
 # Split
 X_train, X_test, y_train, y_test = train_test_split(
@@ -148,6 +199,59 @@ print(
         y_pred
     )
 )
+
+cm = confusion_matrix(
+    y_test,
+    y_pred
+)
+
+plt.figure(figsize=(6,5))
+
+sns.heatmap(
+    cm,
+    annot=True,
+    fmt="d",
+    cmap="Blues"
+)
+
+plt.title(
+    "Confusion Matrix"
+)
+
+plt.xlabel(
+    "Predicted"
+)
+
+plt.ylabel(
+    "Actual"
+)
+
+plt.tight_layout()
+
+plt.savefig(
+    "confusion_matrix.png"
+)
+
+plt.close()
+
+plt.figure(figsize=(10,6))
+
+plot_importance(
+    model,
+    max_num_features=10
+)
+
+plt.title(
+    "Top Features Influencing Attrition"
+)
+
+plt.tight_layout()
+
+plt.savefig(
+    "feature_importance.png"
+)
+
+plt.close()
 
 # Save model
 joblib.dump(
