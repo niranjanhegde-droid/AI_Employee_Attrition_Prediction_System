@@ -1,3 +1,4 @@
+import os
 import joblib
 import pandas as pd
 
@@ -121,12 +122,26 @@ ROLE_MAPPING = {
         "Manager"
 } 
 
+BASE_DIR = os.path.dirname(
+    os.path.abspath(__file__)
+)
+
+MODEL_PATH = os.path.join(
+    BASE_DIR,
+    "model.pkl"
+)
+
+ENCODER_PATH = os.path.join(
+    BASE_DIR,
+    "encoders.pkl"
+)
+
 model = joblib.load(
-    "machine_learning/model.pkl"
+    MODEL_PATH
 )
 
 encoders = joblib.load(
-    "machine_learning/encoders.pkl"
+    ENCODER_PATH
 )
 
 DEPARTMENT_MAPPING = {
