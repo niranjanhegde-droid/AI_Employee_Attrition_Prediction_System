@@ -664,12 +664,18 @@ def admin_predict(employee_id):
         employee.years_at_company
 }
 
-    risk_score, adjusted_risk, status, wellness_score = (
-    predict_employee(
-        employee_data,
-        survey_data
-    )
-)
+    try:
+
+        risk_score, adjusted_risk, status, wellness_score = (
+            predict_employee(
+                employee_data,
+                survey_data
+            )
+        )
+
+    except Exception as e:
+
+        return f"Prediction Error: {str(e)}"
 
     recommendations = []
 
