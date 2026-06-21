@@ -223,14 +223,14 @@ def predict_employee(
                 f"Column: {col} | Value: {df[col].iloc[0]} | Error: {str(e)}"
             )
 
-        probability = model.predict_proba(
-            df
-        )[0][1]
+    probability = model.predict_proba(
+        df
+    )[0][1]
 
-        risk_score = round(
-            probability * 100,
-            2
-        )
+    risk_score = round(
+        probability * 100,
+        2
+    )
 
     # -------------------------
     # Wellness Score
