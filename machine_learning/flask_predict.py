@@ -211,18 +211,26 @@ def predict_employee(
 
     for col in categorical_columns:
 
-        df[col] = encoders[col].transform(
-            df[col]
+        try:
+
+            df[col] = encoders[col].transform(
+                df[col]
+            )
+
+        except Exception as e:
+
+            raise Exception(
+                f"Column: {col} | Value: {df[col].iloc[0]} | Error: {str(e)}"
+            )
+
+        probability = model.predict_proba(
+            df
+        )[0][1]
+
+        risk_score = round(
+            probability * 100,
+            2
         )
-
-    probability = model.predict_proba(
-        df
-    )[0][1]
-
-    risk_score = round(
-        probability * 100,
-        2
-    )
 
     # -------------------------
     # Wellness Score
